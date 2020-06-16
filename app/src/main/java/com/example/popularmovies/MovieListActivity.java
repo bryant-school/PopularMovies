@@ -1,6 +1,7 @@
 package com.example.popularmovies;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -8,7 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class MovieListActivity extends AppCompatActivity {
+public class MovieListActivity extends AppCompatActivity
+        implements MovieAdapter.ListItemClickListener {
     private RecyclerView rvMovies;
     private MovieAdapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -27,7 +29,12 @@ public class MovieListActivity extends AppCompatActivity {
         layoutManager = new GridLayoutManager(this, 2 , GridLayoutManager.VERTICAL, false);
         rvMovies.setLayoutManager(layoutManager);
 
-        mAdapter = new MovieAdapter(movies);
+        mAdapter = new MovieAdapter(movies, this);
         rvMovies.setAdapter(mAdapter);
+    }
+
+    @Override
+    public void onListItemClick(Movie movie) {
+        // Use intent to launch the movie detail activity
     }
 }
