@@ -1,5 +1,7 @@
 package com.example.popularmovies;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -35,6 +37,15 @@ public class MovieListActivity extends AppCompatActivity
 
     @Override
     public void onListItemClick(Movie movie) {
-        // Use intent to launch the movie detail activity
+        // Setup the intent to launch the movie detail activity
+        Context context = getApplicationContext();
+        Class destinationActivity = MovieDetailsActivity.class;
+        Intent intent = new Intent(context, destinationActivity);
+
+        // Add the movie details as an extra
+        intent.putExtra("Movie", movie);
+
+        // Start the activity
+        startActivity(intent);
     }
 }
